@@ -1,61 +1,86 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {  useEffect } from 'react';
+import 'leaflet-ant-path';
+import 'leaflet.animatedmarker/src/AnimatedMarker';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
+export const Mapa = ({ pois, path }) => {
+  const [running, setRunning] = useState(false);
+  const mapRef = useRef(null);
+  const animatedMarkerRef = useRef(null);
 
+  useEffect(() => {
+    const map = L.map(mapRef.current).fitBounds(
+      pois.map(poi => [poi.lat, poi.lng])
+    );
 
-export const Mapa = ({pois,path}) => {
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution:
+        'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+    }).addTo(map);
 
-    useEffect(() => {
-        
-        let DefaultIcon = L.icon({
-            iconUrl: icon,
-            shadowUrl: iconShadow
-        });
-        
-        L.Marker.prototype.options.icon = DefaultIcon
-        // Crea el mapa y configura la vista inicial
-        
-        const map = L.map('map');
-        // Calcula los límites geográficos de los POIs
-        const bounds = L.latLngBounds(pois.map(poi => [poi.lat, poi.lng]));
-    
-        // Ajusta el zoom y la ubicación inicial del mapa en función de los límites
-        map.fitBounds(bounds);
+    const defaultIcon = L.icon({
+      iconUrl: icon,
+      shadowUrl: iconShadow,
+    });
+    L.Marker.prototype.options.icon = defaultIcon;
 
-    
-        // Agrega el mapa base de OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
-        }).addTo(map);
+    pois.forEach(poi => {
+      const { lat, lng, nombre } = poi;
+      const marker = L.marker([lat, lng]).addTo(map);
+      marker.bindPopup(nombre);
+    });
 
-        ///const poisToShow = pois.slice(0, 10);
-    
-        // Dibuja los marcadores de los POIs
-        pois.forEach(poi => {
-          const { lat, lng } = poi;
-          const marker = L.marker([lat, lng]).addTo(map);
-          marker.bindPopup(poi.nombre)
-        });
+    const updatedCoordinates = path.map(coordinate => [
+      coordinate[1],
+      coordinate[0],
+    ]);
 
-        const updatedCoordinates = path.map(coordinate => [coordinate[1], coordinate[0]]);
+    const antPath = L.polyline.antPath(updatedCoordinates, {
+      delay: 1000,
+      dashArray: [10, 20],
+      weight: 5,
+      color: 'blue',
+      pulseColor: 'white',
+      paused: false,
+    }).addTo(map);
 
-       
-        //pintar polilinea del path en morado
-        const pathLine = L.polyline(updatedCoordinates, {color: 'blue'}).addTo(map);
+    animatedMarkerRef.current = L.animatedMarker(updatedCoordinates, {
+      autoStart: false,
+      interval: 40,
+      icon: L.icon({
+        iconUrl:
+          'https://i.pinimg.com/originals/42/a7/6d/42a76d77c74d286d8474fa7bf54e035b.png',
+        iconSize: [70, 70],
+      }),
+    }).addTo(map);
 
+    return () => {
+      map.remove();
+    };
+  }, [pois, path]);
 
-    
-        // Limpia el mapa cuando el componente se desmonte
-        return () => {
-          map.remove();
-        };
-      }, [pois]);
+  const toggleAnimation = () => {
+    if (running) {
+      animatedMarkerRef.current.stop();
+      setRunning(false);
+    } else {
+      animatedMarkerRef.current.start();
+      setRunning(true);
+    }
+  };
 
   return (
-    <div id="map" style={{ height: '600px' }} />
-  )
-}
+    <div>
+      <button onClick={toggleAnimation}>Toggle Animation</button>
+      <div ref={mapRef} style={{ height: '600px' }} />
+    </div>
+  );
+};
+
+
+
+
+
