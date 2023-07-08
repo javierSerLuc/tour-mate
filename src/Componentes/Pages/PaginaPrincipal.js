@@ -5,6 +5,9 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { SelectorFecha } from '../Layout/SelectorFecha';
+import { SelectorPoiInicial } from '../Layout/SelectorPoiInicial';
+
 
 const steps = ['Selecciona cuando', 'Selecciona desde donde empezar', 'Selecciona tus preferencias'];
 
@@ -56,8 +59,12 @@ export const PaginaPrincipal = () => {
     
 
   return (
-    <div>
-        <Box sx={{ width: '50%' }}>
+    //div with top margin
+
+
+    
+    <div style={{maxWidth: '60%', margin: 'auto',marginTop: '8%'}}>
+        
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps = {};
@@ -90,7 +97,9 @@ export const PaginaPrincipal = () => {
       ) : (
         <React.Fragment>
             {/* Aqui va el contenido de cada paso */}
-          <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
+            {activeStep === 0 && <SelectorFecha/>}
+            {activeStep === 1 && <SelectorPoiInicial/>}
+          {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
               color="inherit"
@@ -113,7 +122,7 @@ export const PaginaPrincipal = () => {
           </Box>
         </React.Fragment>
       )}
-    </Box>
+    
     </div>
   )
 }
