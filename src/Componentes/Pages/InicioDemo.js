@@ -10,7 +10,28 @@ export const InicioDemo = () => {
 
     const getRutas = async () =>{
         let url = "http://localhost:8080/api/getRutas/10";
-        const response = await fetch(url);
+        let especificacionFecha = {
+            "ciudad" : "Granada",
+            "dia" : "Sábado",
+            "dateInicioRuta" : "09:10",
+            "dateFinRuta" : "13:50"
+        };
+        let especificacionCriteriosRuta = {
+            "importanciaDistancia" : 1,
+            "importanciaMuseo" : -1
+        }
+        let especificaciones = {
+            especificacionFechaRuta : especificacionFecha,
+            especificacionCriteriosRuta : especificacionCriteriosRuta
+        };
+        let requestOptions ={
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(especificaciones)
+          }
+        const response = await fetch(url, requestOptions);
         const data = await response.json();
         
         setRutas(data.rutas);
