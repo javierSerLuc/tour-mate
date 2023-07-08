@@ -15,6 +15,8 @@ export const PaginaPrincipal = () => {
 
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
+    //Selectores fecha
+    const [diaCalendar, setDiaCalendar] = React.useState('');
 
     const isStepOptional = (step) => {
         return step === 1;
@@ -64,7 +66,6 @@ export const PaginaPrincipal = () => {
 
     
     <div style={{maxWidth: '60%', margin: 'auto',marginTop: '8%'}}>
-        
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps = {};
@@ -97,7 +98,7 @@ export const PaginaPrincipal = () => {
       ) : (
         <React.Fragment>
             {/* Aqui va el contenido de cada paso */}
-            {activeStep === 0 && <SelectorFecha/>}
+            {activeStep === 0 && <SelectorFecha diaCalendar={diaCalendar} setDiaCalendar={setDiaCalendar} />}
             {activeStep === 1 && <SelectorPoiInicial/>}
           {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
