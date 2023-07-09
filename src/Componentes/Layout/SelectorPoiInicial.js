@@ -5,7 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { async } from 'q';
 
-export const SelectorPoiInicial = () => {
+export const SelectorPoiInicial = ({poiInicialSelect,setPoiInicialSelect}) => {
     //const [poi, setPoi] = React.useState('');
     const [listaPois, setListaPois] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
@@ -13,6 +13,7 @@ export const SelectorPoiInicial = () => {
     const handleChange = (event) => {
         //setPoi(event.target.value);
         sessionStorage.setItem('poiInicial', event.target.value);
+        setPoiInicialSelect(event.target.value);
     };
 
     const cargarPoisIniciales = async() => {
@@ -35,7 +36,6 @@ export const SelectorPoiInicial = () => {
       }
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      console.log(data);
       
       setListaPois(data.map((poi) => poi.nombre));
       setLoading(false);
@@ -43,13 +43,16 @@ export const SelectorPoiInicial = () => {
     };
 
     useEffect(() => {
-      cargarPoisIniciales();
+        cargarPoisIniciales();
+      
+      
     }, []);
   
     return (
       
       <div>
         {loading ? <h1>Cargando...</h1> :
+        {poiInicialSelect} === '' ?
         <FormControl sx={{ m: 1, minWidth: 180 }}>
           <InputLabel id="demo-simple-select-autowidth-label">Lugar de inicio</InputLabel>
           <Select
@@ -59,17 +62,35 @@ export const SelectorPoiInicial = () => {
             onChange={handleChange}
             autoWidth
             label="Lugar de inicio"
+            value={poiInicialSelect ?? " "}
+            
           >
             
             {listaPois.map((poi,index) =>{
-              return(<MenuItem index={index} value={poi}>{poi}</MenuItem>)
+              return(<MenuItem key={index} value={poi}>{poi}</MenuItem>)
             })}
-            {/* <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Twenty</MenuItem>
-            <MenuItem value={21}>Twenty one</MenuItem>
-            <MenuItem value={22}>Twenty one and a half</MenuItem> */}
+      
+          </Select>
+        </FormControl>
+        :
+        <FormControl sx={{ m: 1, minWidth: 180 }}>
+          <InputLabel id="demo-simple-select-autowidth-label">Lugar de inicio</InputLabel>
+          <Select
+            labelId="demo-simple-select-autowidth-label"
+            id="demo-simple-select-autowidth"
+            //value={poi}
+            onChange={handleChange}
+            autoWidth
+            label="Lugar de inicio"
+            defaultValue={poiInicialSelect}
+            value={poiInicialSelect ?? " "}
+            
+          >
+            
+            {listaPois.map((poi,index) =>{
+              return(<MenuItem key={index} value={poi}>{poi}</MenuItem>)
+            })}
+      
           </Select>
         </FormControl>
         }

@@ -2,7 +2,7 @@ import React from 'react'
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 
 const horaRegex = /\d{2}:\d{2}/;
-export const SelectorHora = ({horaReloj,setHoraReloj,reloj}) => {
+export const SelectorHora = ({horaReloj,setHoraReloj,reloj,setPoiInicialSelect}) => {
 
   const getHora = (date) => {
     
@@ -10,6 +10,8 @@ export const SelectorHora = ({horaReloj,setHoraReloj,reloj}) => {
     const hora = cadena.match(horaRegex)[0];
     if(reloj === 0){
       sessionStorage.setItem('horaInicio', hora);
+      setPoiInicialSelect('');
+      sessionStorage.setItem('poiInicial', '');
     }
     else{
       sessionStorage.setItem('horaFin', hora);
