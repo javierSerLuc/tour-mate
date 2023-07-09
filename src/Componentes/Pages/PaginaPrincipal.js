@@ -70,6 +70,14 @@ export const PaginaPrincipal = () => {
         setActiveStep(0);
     };
 
+    const comprobarEleccionDatos = () => {
+        let dia = sessionStorage.getItem('dia');
+        let dateInicioRuta = sessionStorage.getItem('horaInicio');
+        let dateFinRuta = sessionStorage.getItem('horaFin');
+
+        return dia !== null && dateInicioRuta !== null && dateFinRuta !== null;
+    };
+
     
 
   return (
@@ -118,10 +126,23 @@ export const PaginaPrincipal = () => {
                 Skip
               </Button>
             )}
+            {activeStep===0 && (
+              comprobarEleccionDatos() ? (
+              
+                <Button onClick={handleNext} >
+                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                </Button>
+              ) : 
+                <Button disabled onClick={handleNext} >
+                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                </Button>
+            )}
+            {activeStep!==0 && (
 
-            <Button onClick={handleNext}>
+            <Button onClick={handleNext} >
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>
+            )}
           </Box>
         </React.Fragment>
       
