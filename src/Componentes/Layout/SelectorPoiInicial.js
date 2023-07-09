@@ -6,12 +6,13 @@ import Select from '@mui/material/Select';
 import { async } from 'q';
 
 export const SelectorPoiInicial = () => {
-    const [poi, setPoi] = React.useState('');
+    //const [poi, setPoi] = React.useState('');
     const [listaPois, setListaPois] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
 
     const handleChange = (event) => {
-        setPoi(event.target.value);
+        //setPoi(event.target.value);
+        sessionStorage.setItem('poiInicial', event.target.value);
     };
 
     const cargarPoisIniciales = async() => {
@@ -54,7 +55,7 @@ export const SelectorPoiInicial = () => {
           <Select
             labelId="demo-simple-select-autowidth-label"
             id="demo-simple-select-autowidth"
-            value={poi}
+            //value={poi}
             onChange={handleChange}
             autoWidth
             label="Lugar de inicio"
