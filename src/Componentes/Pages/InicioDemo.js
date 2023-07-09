@@ -2,20 +2,45 @@ import React, { useEffect } from 'react'
 import {useState} from 'react'
 import {Mapa} from '../Layout/Mapa'
 
+import { useNavigate } from "react-router-dom";
+
 export const InicioDemo = () => {
     const [rutaMostrar, setRutaMostrar] = useState(0);
     const [numRutas, setNumRutas] = useState(0); 
     const [rutas, setRutas] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     const getRutas = async () =>{
         let url = "http://localhost:8080/api/getRutas/10";
+        
+        let dia = sessionStorage.getItem('dia');
+        let dateInicioRuta = sessionStorage.getItem('horaInicio');
+        let dateFinRuta = sessionStorage.getItem('horaFin');
+        let poiInicial = sessionStorage.getItem('poiInicial');
+
         let especificacionFecha = {
             "ciudad" : "Granada",
-            "dia" : "Sábado",
-            "dateInicioRuta" : "09:10",
-            "dateFinRuta" : "13:50"
+            "dia" : dia,
+            "dateInicioRuta" : dateInicioRuta,
+            "dateFinRuta" : dateFinRuta,
+            "poiInicio" : poiInicial
         };
+        //borrar session storage
+        sessionStorage.removeItem('dia');
+        sessionStorage.removeItem('horaInicio');
+        sessionStorage.removeItem('horaFin');
+        sessionStorage.removeItem('poiInicial');
+        
+
+
+        // let especificacionFecha = {
+        //     "ciudad" : "Granada",
+        //     "dia" : "Sábado",
+        //     "dateInicioRuta" : "09:10",
+        //     "dateFinRuta" : "13:50"
+        // };
+        
         let especificacionCriteriosRuta = {
             "importanciaDistancia" : 1,
             "importanciaMuseo" : -1
@@ -43,7 +68,6 @@ export const InicioDemo = () => {
     useEffect(() => {
         getRutas();
         
-        console.log(rutas);
     },[]);
 
     const changeRuta = (num) => {
@@ -57,6 +81,7 @@ export const InicioDemo = () => {
 
   return (
     <div>
+        <button onClick={() => navigate('/')}>Volver</button>
         <button onClick={() => console.log(rutas)}>Get Rutas</button>
         <button onClick={() => console.log(rutaMostrar)}>Ruta Mostrar</button>
         {loading ? <h1>Cargando...</h1>

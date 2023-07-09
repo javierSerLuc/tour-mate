@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -12,6 +13,8 @@ import { SelectorPoiInicial } from '../Layout/SelectorPoiInicial';
 const steps = ['Selecciona cuando', 'Selecciona desde donde empezar', 'Selecciona tus preferencias'];
 
 export const PaginaPrincipal = () => {
+
+  const navigate = useNavigate();
 
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
@@ -38,6 +41,10 @@ export const PaginaPrincipal = () => {
     
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setSkipped(newSkipped);
+
+        if(activeStep === steps.length - 1){
+          navigate('/mapa');
+        }
     };
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -56,6 +63,8 @@ export const PaginaPrincipal = () => {
           newSkipped.add(activeStep);
           return newSkipped;
         });
+        setPoiInicialSelect('');
+        sessionStorage.removeItem('poiInicial');
     };
     const handleReset = () => {
         setActiveStep(0);
@@ -88,17 +97,7 @@ export const PaginaPrincipal = () => {
           );
         })}
       </Stepper>
-      {activeStep === steps.length ? (
-        <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
-          </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleReset}>Reset</Button>
-          </Box>
-        </React.Fragment>
-      ) : (
+       
         <React.Fragment>
             {/* Aqui va el contenido de cada paso */}
             {activeStep === 0 && <SelectorFecha diaCalendar={diaCalendar} setDiaCalendar={setDiaCalendar} horaInicioReloj={horaInicioReloj} setHoraInicioReloj={setHoraInicioReloj} horaFinReloj={horaFinReloj} setHoraFinReloj={setHoraFinReloj} setPoiInicialSelect={setPoiInicialSelect}  />}
@@ -125,7 +124,7 @@ export const PaginaPrincipal = () => {
             </Button>
           </Box>
         </React.Fragment>
-      )}
+      
     
     </div>
   )
