@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { SelectorFecha } from '../Layout/SelectorFecha';
 import { SelectorPoiInicial } from '../Layout/SelectorPoiInicial';
+import { SelectorCriterios } from '../Layout/SelectorCriterios';
 
 
 const steps = ['Selecciona cuando', 'Selecciona desde donde empezar', 'Selecciona tus preferencias'];
@@ -16,7 +17,7 @@ export const PaginaPrincipal = () => {
 
   const navigate = useNavigate();
 
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = React.useState(2);
     const [skipped, setSkipped] = React.useState(new Set());
     //Selectores fecha
     const [diaCalendar, setDiaCalendar] = React.useState('');
@@ -110,6 +111,7 @@ export const PaginaPrincipal = () => {
             {/* Aqui va el contenido de cada paso */}
             {activeStep === 0 && <SelectorFecha diaCalendar={diaCalendar} setDiaCalendar={setDiaCalendar} horaInicioReloj={horaInicioReloj} setHoraInicioReloj={setHoraInicioReloj} horaFinReloj={horaFinReloj} setHoraFinReloj={setHoraFinReloj} setPoiInicialSelect={setPoiInicialSelect}  />}
             {activeStep === 1 && <SelectorPoiInicial poiInicialSelect={poiInicialSelect} setPoiInicialSelect={setPoiInicialSelect} />}
+            {activeStep === 2 && <SelectorCriterios />}
           {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
