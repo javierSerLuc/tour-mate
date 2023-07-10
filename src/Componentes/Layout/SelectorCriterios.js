@@ -85,22 +85,20 @@ export const SelectorCriterios = () => {
 
 
   return (
-    <div style={{display:'flex', margin: 'auto'}}>
+    <div style={{display:'flex', margin: 'auto',justifyContent: 'center'}}>
         
         <DragDropContext onDragEnd={handleOnDragEnd}>
-            <Droppable droppableId="criteriosMalos" style={{
-                border: '10px solid black !important'
-            }}>
+            <div className='board-left'>
+                <h3>Criterios no seleccionados</h3>
+            <Droppable droppableId="criteriosMalos" >
                 {(provided) => (
                     <List {...provided.droppableProps} ref={provided.innerRef} sx={{
-                        marginTop: '5%',
-                        border: '5px solid black !important',
-                        float: 'left',
+                        
+                        
                         minHeight: '210px',
                         minWidth: '250px'
         
                     }}>
-                        <h4>Criterios</h4>
                         {criterios.map((criterio,index) => (
                             <Draggable key={criterio.id} draggableId={criterio.id.toString()} index={index}>
                                 {(provided) => (
@@ -111,10 +109,12 @@ export const SelectorCriterios = () => {
                                         marginBottom: '3%',
                                         // width: 'fit-content',
                                         //marin finito gris clarito
-                                        border: '3px solid #e0e0e0',
+                                        border: '2px solid #e0e0e0',
                                         borderRadius: '5px',
                                         //padding 2% para que no quede pegado al borde
-                                        padding: '0.5rem' 
+                                        padding: '0.5rem' ,
+                                            backgroundColor: '#FFFFFF',
+                                            minHeight: '70px'
                                     
                                     }}>
                                         <ListItemAvatar>
@@ -137,55 +137,58 @@ export const SelectorCriterios = () => {
                     
                 )}
             </Droppable>
+            </div>
 
-            <Droppable droppableId="criteriosBuenos">
-                {(provided) => (
-                    <List {...provided.droppableProps} ref={provided.innerRef} sx={{
-                        marginTop: '5%',
-                        border: '5px solid black !important',
-                        float: 'left',
-                        minHeight: '210px',
-                        minWidth: '250px'
-        
-        
-                    }}>
-                        <h4>Criterios a tener en Cuenta</h4>
-                        {criteriosBuenos.map((criterio,index) => (
-                            <Draggable key={criterio.id} draggableId={criterio.id.toString()} index={index}>
-                                {(provided) => (
-                                    <ListItem {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}  disablePadding sx={{
-                                        //maxwidth 60% y margin auto para centrar
-                                    
-                                        margin: 'auto',
-                                        marginBottom: '3%',
-                                        // width: 'fit-content',
-                                        //marin finito gris clarito
-                                        border: '3px solid #e0e0e0',
-                                        borderRadius: '5px',
-                                        //padding 2% para que no quede pegado al borde
-                                        padding: '0.5rem' 
-                                    
-                                    }}>
-                                        <ListItemAvatar>
-                                            <Avatar alt={criterio.nombre} src={criterio.avatar} variant="square" />
-                                        </ListItemAvatar>
-                                        <ListItemText
-                                            primary={criterio.nombre} sx={{
-                                                //Solo ocupe el tamaño del texto de anchura
-                                                width: 'fit-content'
-                                            
-                                            }}
-                                        />
-                                    </ListItem>
-                                )}
-                                
-                            </Draggable>
-                        ))}
-                        {provided.placeholder}
-                    </List>
-                    
-                )}
-            </Droppable>
+            <div className='board-right'>
+                <h3>Criterios de la Ruta</h3>
+                <Droppable droppableId="criteriosBuenos">
+                    {(provided) => (
+                        <List {...provided.droppableProps} ref={provided.innerRef} sx={{
+                            
+                            minHeight: '210px',
+                            minWidth: '250px'
+                        
+                        
+                        }}>
+                            {criteriosBuenos.map((criterio,index) => (
+                                <Draggable key={criterio.id} draggableId={criterio.id.toString()} index={index}>
+                                    {(provided) => (
+                                        <ListItem {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}  disablePadding sx={{
+                                            //maxwidth 60% y margin auto para centrar
+                                        
+                                            margin: 'auto',
+                                            marginBottom: '3%',
+                                            // width: 'fit-content',
+                                            //marin finito gris clarito
+                                            border: '3px solid #e0e0e0',
+                                            borderRadius: '5px',
+                                            //padding 2% para que no quede pegado al borde
+                                            padding: '0.5rem' ,
+                                            backgroundColor: '#FFFFFF',
+                                            minHeight: '70px'
+                                        
+                                        }}>
+                                            <ListItemAvatar>
+                                                <Avatar alt={criterio.nombre} src={criterio.avatar} variant="square" />
+                                            </ListItemAvatar>
+                                            <ListItemText
+                                                primary={criterio.nombre} sx={{
+                                                    //Solo ocupe el tamaño del texto de anchura
+                                                    width: 'fit-content'
+                                                
+                                                }}
+                                            />
+                                        </ListItem>
+                                    )}
+
+                                </Draggable>
+                            ))}
+                            {provided.placeholder}
+                        </List>
+
+                    )}
+                </Droppable>
+            </div>
             
             <div style={{clear: 'both'}}></div>
             
