@@ -80,7 +80,6 @@ export const InicioDemo = () => {
     <div>
         <button onClick={() => navigate('/')}>Volver</button>
         <button onClick={() => console.log(rutas)}>Get Rutas</button>
-        <button onClick={() => console.log(rutaMostrar)}>Ruta Mostrar</button>
         {loading ? <h1>Cargando...</h1>
         
         : <div>

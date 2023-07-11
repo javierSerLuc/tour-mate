@@ -75,7 +75,7 @@ export const Mapa = ({ pois, path }) => {
   return (
     <div>
       <button onClick={toggleAnimation}>Toggle Animation</button>
-      <div ref={mapRef} style={{ height: '600px' }} />
+      <div ref={mapRef} style={{ height: '500px' }} />
     </div>
   );
 };

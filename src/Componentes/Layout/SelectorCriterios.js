@@ -45,7 +45,7 @@ export const SelectorCriterios = () => {
     }, [criteriosBuenos,criterios]);
 
     useEffect(() => {
-        console.log(conjunto);
+        
         let criteriosUsuario ={
             "criteriosRelevantes" : criteriosBuenos.length,
             "distancia" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 1)),
