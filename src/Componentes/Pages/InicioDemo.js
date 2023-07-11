@@ -41,10 +41,7 @@ export const InicioDemo = () => {
         //     "dateFinRuta" : "13:50"
         // };
         
-        let especificacionCriteriosRuta = {
-            "importanciaDistancia" : 1,
-            "importanciaMuseo" : -1
-        }
+        let especificacionCriteriosRuta = JSON.parse(sessionStorage.getItem('criteriosUsuario'));
         let especificaciones = {
             especificacionFechaRuta : especificacionFecha,
             especificacionCriteriosRuta : especificacionCriteriosRuta
