@@ -1,5 +1,5 @@
 import { List } from '@mui/material';
-import React from 'react'
+import React, { useEffect } from 'react'
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -32,23 +32,34 @@ export const SelectorCriterios = () => {
             avatar: "https://www.w3schools.com/howto/img_avatar.png",
         }
     ];
-    let criteriosBuenosArray = [
-        
-
-    ];
+    let criteriosBuenosArray = [];
 
     const [criterios, setCriterios] = React.useState(infoCriterios);
     const [criteriosBuenos, setCriteriosBuenos] = React.useState(criteriosBuenosArray);
+    const [conjunto, setConjunto] = React.useState(criteriosBuenos.concat(criterios));
 
+    useEffect(() => {
+        setConjunto(criteriosBuenos.concat(criterios));
+        
+        
+    }, [criteriosBuenos,criterios]);
+
+    useEffect(() => {
+        console.log(conjunto);
+        let criteriosUsuario ={
+            "criteriosRelevantes" : criteriosBuenos.length,
+            "distancia" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 1)),
+            "coste" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 2)),
+            "accesibilidad" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 3)),
+            "numPois" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 0))
+
+        };
+        sessionStorage.setItem('criteriosUsuario', JSON.stringify(criteriosUsuario));
+    }, [conjunto]);
+    
+   
     function handleOnDragEnd(result){
-        // console.log(result);
-        // if (!result.destination) return;
-        // const items = Array.from(criterios);
-        // const [reorderedItem] = items.splice(result.source.index, 1);
-        // items.splice(result.destination.index, 0, reorderedItem);
-        // setCriterios(items);
-
-        // fucnion para pasar de una lista a otra y viceversa
+        
         if (!result.destination) return;
         if (result.source.droppableId === result.destination.droppableId){
             if(result.source.droppableId === 'criteriosMalos'){
@@ -79,7 +90,6 @@ export const SelectorCriterios = () => {
                 setCriterios(items2);
             }
         }
-
     }
 
 

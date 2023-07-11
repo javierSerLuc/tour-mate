@@ -17,7 +17,7 @@ export const PaginaPrincipal = () => {
 
   const navigate = useNavigate();
 
-    const [activeStep, setActiveStep] = React.useState(2);
+    const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
     //Selectores fecha
     const [diaCalendar, setDiaCalendar] = React.useState('');
