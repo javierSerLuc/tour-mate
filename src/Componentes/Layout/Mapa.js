@@ -62,8 +62,8 @@ export const Mapa = ({ pois, path, poiActual }) => {
       interval: 40,
       icon: L.icon({
         iconUrl:
-          'https://i.pinimg.com/originals/42/a7/6d/42a76d77c74d286d8474fa7bf54e035b.png',
-        iconSize: [70, 70],
+          'https://cdn-icons-png.flaticon.com/512/5965/5965286.png',
+        iconSize: [60, 60],
       }),
     }).addTo(map);
 

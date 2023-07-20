@@ -90,8 +90,12 @@ export const InicioDemo = () => {
             <h1>InicioDemo</h1>
             <button onClick={() => changeRuta(-1)}>anterior</button>
             <button onClick={() => changeRuta(+1)}>Siguiente</button>
-            <Mapa pois={rutas[rutaMostrar].pois} path={rutas[rutaMostrar].path} poiActual={poiSeleccionado}></Mapa>
-            <ListaRuta pois={rutas[rutaMostrar].pois} setPoiSeleccionado={setPoiSeleccionado}></ListaRuta>
+            <div className='mapa'>
+                <Mapa pois={rutas[rutaMostrar].pois} path={rutas[rutaMostrar].path} poiActual={poiSeleccionado}></Mapa>
+            </div>
+            <div className='lista-rutas'>
+                <ListaRuta pois={rutas[rutaMostrar].pois} setPoiSeleccionado={setPoiSeleccionado}></ListaRuta>
+            </div>
             </div>}
         
         {/* mapas */}
