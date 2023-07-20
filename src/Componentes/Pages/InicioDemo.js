@@ -3,12 +3,14 @@ import {useState} from 'react'
 import {Mapa} from '../Layout/Mapa'
 
 import { useNavigate } from "react-router-dom";
+import { ListaRuta } from '../Layout/ListaRuta';
 
 export const InicioDemo = () => {
     const [rutaMostrar, setRutaMostrar] = useState(0);
     const [numRutas, setNumRutas] = useState(0); 
     const [rutas, setRutas] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [poiSeleccionado, setPoiSeleccionado] = useState(0);
     const navigate = useNavigate();
 
     const getRutas = async () =>{
@@ -26,11 +28,13 @@ export const InicioDemo = () => {
             "dateFinRuta" : dateFinRuta,
             "poiInicio" : poiInicial
         };
+
         //borrar session storage
-        sessionStorage.removeItem('dia');
-        sessionStorage.removeItem('horaInicio');
-        sessionStorage.removeItem('horaFin');
-        sessionStorage.removeItem('poiInicial');
+
+        // sessionStorage.removeItem('dia');
+        // sessionStorage.removeItem('horaInicio');
+        // sessionStorage.removeItem('horaFin');
+        // sessionStorage.removeItem('poiInicial');
         
 
 
@@ -86,7 +90,12 @@ export const InicioDemo = () => {
             <h1>InicioDemo</h1>
             <button onClick={() => changeRuta(-1)}>anterior</button>
             <button onClick={() => changeRuta(+1)}>Siguiente</button>
-            <Mapa pois={rutas[rutaMostrar].pois} path={rutas[rutaMostrar].path}></Mapa>
+            <div className='mapa'>
+                <Mapa pois={rutas[rutaMostrar].pois} path={rutas[rutaMostrar].path} poiActual={poiSeleccionado}></Mapa>
+            </div>
+            <div className='lista-rutas'>
+                <ListaRuta pois={rutas[rutaMostrar].pois} setPoiSeleccionado={setPoiSeleccionado}></ListaRuta>
+            </div>
             </div>}
         
         {/* mapas */}
