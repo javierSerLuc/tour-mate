@@ -48,7 +48,8 @@ export const InicioDemo = () => {
         let especificacionCriteriosRuta = JSON.parse(sessionStorage.getItem('criteriosUsuario'));
         let especificaciones = {
             especificacionFechaRuta : especificacionFecha,
-            especificacionCriteriosRuta : especificacionCriteriosRuta
+            especificacionCriteriosRuta : especificacionCriteriosRuta,
+            vehicle : "driving-car"
         };
         let requestOptions ={
             method: 'POST',
