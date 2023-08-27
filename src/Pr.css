@@ -1,0 +1,6 @@
+#root{
+    
+    background-image: url('../public/BACKGROUND.svg');
+    background-size: cover; /* Ajusta el tamaño de la imagen al tamaño de la ventana */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+}

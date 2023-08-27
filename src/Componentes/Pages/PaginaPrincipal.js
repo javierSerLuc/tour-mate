@@ -87,7 +87,7 @@ export const PaginaPrincipal = () => {
 
     
     <div style={{maxWidth: '60%', margin: 'auto',marginTop: '8%'}}>
-      <Stepper activeStep={activeStep}>
+      <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label, index) => {
           const stepProps = {};
           const labelProps = {};
