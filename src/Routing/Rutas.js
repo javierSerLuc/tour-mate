@@ -10,9 +10,9 @@ export const Rutas = () => {
         {/*  */}
 
         <Routes>
-            <Route path="/landing" element={<Landing/>}/>
-            <Route path="/" element={<PaginaPrincipal/>}/>
-            <Route path="/mapa" element={<InicioDemo/>}/>
+            <Route path="/" element={<Landing/>}/>
+            <Route path="/Inicio" element={<PaginaPrincipal/>}/>
+            <Route path="Ruta" element={<InicioDemo/>}/>
         </Routes>
     </BrowserRouter>
   )

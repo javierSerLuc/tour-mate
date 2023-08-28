@@ -44,7 +44,7 @@ export const PaginaPrincipal = () => {
         setSkipped(newSkipped);
 
         if(activeStep === steps.length - 1){
-          navigate('/mapa');
+          navigate('/Ruta');
         }
     };
     const handleBack = () => {

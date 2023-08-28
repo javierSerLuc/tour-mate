@@ -2,9 +2,12 @@ import React from 'react'
 import '../../Landing.css'
 import { Nav } from '../Layout/Nav'
 import Button from '@mui/material/Button';
+import { useNavigate } from "react-router-dom";
 
 
 export const Landing = () => {
+  const navigate = useNavigate();
+  
   return (
     <div className='landing'>
         <div className='fondo'></div>
@@ -20,7 +23,7 @@ export const Landing = () => {
                     <span className='roboto'>Lorem Ipsum es simplemente el texto de relleno de las imprentas.Lorem Ipsum es simplemente el texto de relleno de las imprentasLorem Ipsum es simplemente el texto de relleno de las imprentas</span>
                 </div>
                 <div className='boton'>
-                    <Button   variant="contained" className='boton-landing' href='/mapa' sx={{width: 200,borderRadius: 35,
+                    <Button onClick={() => navigate('/Inicio')}   variant="contained" className='boton-landing' href='/Inicio' sx={{width: 200,borderRadius: 35,
     ':hover': {
       bgcolor: '#F8A41F', // theme.palette.primary.main
       color: 'white',
