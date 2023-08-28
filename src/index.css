@@ -5,9 +5,36 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+.montserrat900 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+}
+.montserrat700 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+.montserrat400 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+/* Clase para los encabezados */
+.roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Clase para el texto de párrafo */
+.lato {
+  font-family: 'Lato', sans-serif;
 }
