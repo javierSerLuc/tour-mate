@@ -83,72 +83,78 @@ export const PaginaPrincipal = () => {
 
   return (
     //div with top margin
+    <div className='work-board'>
+      <div className='img-board'>
 
+      </div>
 
-    
-    <div style={{maxWidth: '60%', margin: 'auto',marginTop: '8%'}}>
-      <Stepper activeStep={activeStep} alternativeLabel>
-        {steps.map((label, index) => {
-          const stepProps = {};
-          const labelProps = {};
-          if (isStepOptional(index)) {
-            labelProps.optional = (
-              <Typography variant="caption">Optional</Typography>
+      <div className='stepper-board' style={{maxWidth: '60%', margin: 'auto',marginTop: '8%'}}>
+        <Stepper activeStep={activeStep} alternativeLabel>
+          {steps.map((label, index) => {
+            const stepProps = {};
+            const labelProps = {};
+            if (isStepOptional(index)) {
+              labelProps.optional = (
+                <Typography variant="caption">Optional</Typography>
+              );
+            }
+            if (isStepSkipped(index)) {
+              stepProps.completed = false;
+            }
+            return (
+              <Step key={label} {...stepProps}>
+                <StepLabel {...labelProps}>{label}</StepLabel>
+              </Step>
             );
-          }
-          if (isStepSkipped(index)) {
-            stepProps.completed = false;
-          }
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-       
-        <React.Fragment>
-            {/* Aqui va el contenido de cada paso */}
-            {activeStep === 0 && <SelectorFecha diaCalendar={diaCalendar} setDiaCalendar={setDiaCalendar} horaInicioReloj={horaInicioReloj} setHoraInicioReloj={setHoraInicioReloj} horaFinReloj={horaFinReloj} setHoraFinReloj={setHoraFinReloj} setPoiInicialSelect={setPoiInicialSelect}  />}
-            {activeStep === 1 && <SelectorPoiInicial poiInicialSelect={poiInicialSelect} setPoiInicialSelect={setPoiInicialSelect} />}
-            {activeStep === 2 && <SelectorCriterios />}
-          {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}
-          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-            <Button
-              color="inherit"
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              sx={{ mr: 1 }}
-            >
-              Back
-            </Button>
-            <Box sx={{ flex: '1 1 auto' }} />
-            {isStepOptional(activeStep) && (
-              <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                Skip
+          })}
+        </Stepper>
+        
+          <React.Fragment>
+              {/* Aqui va el contenido de cada paso */}
+              {activeStep === 0 && <SelectorFecha diaCalendar={diaCalendar} setDiaCalendar={setDiaCalendar} horaInicioReloj={horaInicioReloj} setHoraInicioReloj={setHoraInicioReloj} horaFinReloj={horaFinReloj} setHoraFinReloj={setHoraFinReloj} setPoiInicialSelect={setPoiInicialSelect}  />}
+              {activeStep === 1 && <SelectorPoiInicial poiInicialSelect={poiInicialSelect} setPoiInicialSelect={setPoiInicialSelect} />}
+              {activeStep === 2 && <SelectorCriterios />}
+            {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+              <Button
+                color="inherit"
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                sx={{ mr: 1 }}
+              >
+                Back
               </Button>
-            )}
-            {activeStep===0 && (
-              comprobarEleccionDatos() ? (
-              
-                <Button onClick={handleNext} >
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+              <Box sx={{ flex: '1 1 auto' }} />
+              {isStepOptional(activeStep) && (
+                <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+                  Skip
                 </Button>
-              ) : 
-                <Button disabled onClick={handleNext} >
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                </Button>
-            )}
-            {activeStep!==0 && (
+              )}
+              {activeStep===0 && (
+                comprobarEleccionDatos() ? (
+                
+                  <Button onClick={handleNext} >
+                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                  </Button>
+                ) : 
+                  <Button disabled onClick={handleNext} >
+                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                  </Button>
+              )}
+              {activeStep!==0 && (
 
-            <Button onClick={handleNext} >
-              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-            </Button>
-            )}
-          </Box>
-        </React.Fragment>
+              <Button onClick={handleNext} >
+                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+              </Button>
+              )}
+            </Box>
+          </React.Fragment>
       
     
+      </div>
     </div>
+
+    
+    
   )
 }
