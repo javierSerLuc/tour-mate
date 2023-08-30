@@ -28,3 +28,12 @@
     color: #F8A41F !important;
     scale: 1.7;
 }
+.botones{
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+/* .css-1f4t27d-MuiButtonBase-root-MuiButton-root.Mui-disabled{
+    color: white !important;
+} */

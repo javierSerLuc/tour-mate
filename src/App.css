@@ -39,9 +39,9 @@
 }
 
 .board-left{
-  background-color: #EBECF0;
+  background-color: #e4f6ff;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 20px;
 
   margin-top: 5%;
   float: left;
@@ -54,9 +54,9 @@
 
 }
 .board-right{
-  background-color: #EBECF0;
+  background-color: #e4f6ff;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 20px;
 
   margin-top: 5%;
   float: left;

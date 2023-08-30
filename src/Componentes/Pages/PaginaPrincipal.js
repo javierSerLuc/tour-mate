@@ -30,7 +30,11 @@ export const PaginaPrincipal = () => {
 
     
       
-     
+     let botones = {width: 120,borderRadius: 35,bgcolor: '#5563ad',margin:4,':hover': {
+      bgcolor: '#F8A41F', // theme.palette.primary.main
+      color: 'white',
+      
+    }};
 
     const isStepOptional = (step) => {
         return step === 1;
@@ -127,39 +131,38 @@ export const PaginaPrincipal = () => {
               {activeStep === 1 && <SelectorPoiInicial poiInicialSelect={poiInicialSelect} setPoiInicialSelect={setPoiInicialSelect} />}
               {activeStep === 2 && <SelectorCriterios />}
             {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+            <div className='botones'>
               <Button
                 color="inherit"
                 disabled={activeStep === 0}
                 onClick={handleBack}
-                sx={{ mr: 1 }}
+                variant="contained" sx={botones}
               >
                 Back
               </Button>
-              <Box sx={{ flex: '1 1 auto' }} />
               {isStepOptional(activeStep) && (
-                <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+                <Button color="inherit" onClick={handleSkip} sx={botones}>
                   Skip
                 </Button>
               )}
               {activeStep===0 && (
                 comprobarEleccionDatos() ? (
                 
-                  <Button onClick={handleNext} >
+                  <Button onClick={handleNext} variant="contained" sx={botones}>
                     {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                   </Button>
                 ) : 
-                  <Button disabled onClick={handleNext} >
+                  <Button disabled onClick={handleNext} variant="contained" sx={botones} >
                     {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                   </Button>
               )}
               {activeStep!==0 && (
 
-              <Button onClick={handleNext} >
+              <Button onClick={handleNext} variant="contained" sx={botones} >
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>
               )}
-            </Box>
+            </div>
           </React.Fragment>
       
     

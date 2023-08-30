@@ -20,6 +20,7 @@ export const InicioDemo = () => {
         let dateInicioRuta = sessionStorage.getItem('horaInicio');
         let dateFinRuta = sessionStorage.getItem('horaFin');
         let poiInicial = sessionStorage.getItem('poiInicial');
+        let vehiculo = sessionStorage.getItem('vehicle');
 
         let especificacionFecha = {
             "ciudad" : "Granada",
@@ -49,7 +50,7 @@ export const InicioDemo = () => {
         let especificaciones = {
             especificacionFechaRuta : especificacionFecha,
             especificacionCriteriosRuta : especificacionCriteriosRuta,
-            vehicle : "driving-car"
+            vehicle : vehiculo
         };
         let requestOptions ={
             method: 'POST',
