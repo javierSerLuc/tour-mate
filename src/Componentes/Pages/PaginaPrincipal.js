@@ -9,6 +9,8 @@ import Typography from '@mui/material/Typography';
 import { SelectorFecha } from '../Layout/SelectorFecha';
 import { SelectorPoiInicial } from '../Layout/SelectorPoiInicial';
 import { SelectorCriterios } from '../Layout/SelectorCriterios';
+import persona from '../../Resources/persona.svg'
+import '../CSS/Stepper.css'
 
 
 const steps = ['Selecciona cuando', 'Selecciona desde donde empezar', 'Selecciona tus preferencias'];
@@ -24,6 +26,11 @@ export const PaginaPrincipal = () => {
     const [horaInicioReloj, setHoraInicioReloj] = React.useState('');
     const [horaFinReloj, setHoraFinReloj] = React.useState('');
     const [poiInicialSelect, setPoiInicialSelect] = React.useState('');
+    const [vehiculo, setVehiculo] = React.useState('');
+
+    
+      
+     
 
     const isStepOptional = (step) => {
         return step === 1;
@@ -75,8 +82,9 @@ export const PaginaPrincipal = () => {
         let dia = sessionStorage.getItem('dia');
         let dateInicioRuta = sessionStorage.getItem('horaInicio');
         let dateFinRuta = sessionStorage.getItem('horaFin');
+        let vehiculo = sessionStorage.getItem('vehicle');
 
-        return dia !== null && dateInicioRuta !== null && dateFinRuta !== null;
+        return dia !== null && dateInicioRuta !== null && dateFinRuta !== null && vehiculo !== null;
     };
 
     
@@ -85,14 +93,18 @@ export const PaginaPrincipal = () => {
     //div with top margin
     <div className='work-board'>
       <div className='img-board'>
+        {/* <img src='../../Group.svg' alt='Persona' className='img-persona' /> */}
+        <img src={persona} alt="Landing" />
 
       </div>
 
-      <div className='stepper-board' style={{maxWidth: '60%', margin: 'auto',marginTop: '8%'}}>
+      <div className='stepper-board' >
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label, index) => {
             const stepProps = {};
             const labelProps = {};
+
+
             if (isStepOptional(index)) {
               labelProps.optional = (
                 <Typography variant="caption">Optional</Typography>
@@ -102,8 +114,8 @@ export const PaginaPrincipal = () => {
               stepProps.completed = false;
             }
             return (
-              <Step key={label} {...stepProps}>
-                <StepLabel {...labelProps}>{label}</StepLabel>
+              <Step key={label} {...stepProps} className='step'>
+                <StepLabel {...labelProps} >{label}</StepLabel>
               </Step>
             );
           })}
@@ -111,7 +123,7 @@ export const PaginaPrincipal = () => {
         
           <React.Fragment>
               {/* Aqui va el contenido de cada paso */}
-              {activeStep === 0 && <SelectorFecha diaCalendar={diaCalendar} setDiaCalendar={setDiaCalendar} horaInicioReloj={horaInicioReloj} setHoraInicioReloj={setHoraInicioReloj} horaFinReloj={horaFinReloj} setHoraFinReloj={setHoraFinReloj} setPoiInicialSelect={setPoiInicialSelect}  />}
+              {activeStep === 0 && <SelectorFecha diaCalendar={diaCalendar} setDiaCalendar={setDiaCalendar} horaInicioReloj={horaInicioReloj} setHoraInicioReloj={setHoraInicioReloj} horaFinReloj={horaFinReloj} setHoraFinReloj={setHoraFinReloj} setPoiInicialSelect={setPoiInicialSelect} vehiculo={vehiculo} setVehiculo={setVehiculo}  />}
               {activeStep === 1 && <SelectorPoiInicial poiInicialSelect={poiInicialSelect} setPoiInicialSelect={setPoiInicialSelect} />}
               {activeStep === 2 && <SelectorCriterios />}
             {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}
