@@ -174,7 +174,7 @@ export const SelectorCriterios = () => {
                                             borderRadius: '5px',
                                             //padding 2% para que no quede pegado al borde
                                             padding: '0.5rem' ,
-                                            backgroundColor: '#FFFFFF',
+                                            backgroundColor: '#F8A41F',
                                             minHeight: '70px'
                                         
                                         }}>
