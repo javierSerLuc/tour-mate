@@ -74,7 +74,8 @@
   margin-bottom: 5%;
   margin-left: 5%;
   margin-right: 5%;
-  width: 40%;
+  width: 50%;
+  border-radius: 30px;
 
 }
 .lista-rutas{
@@ -82,15 +83,21 @@
   margin-bottom: 5%;
   margin-left: 5%;
   margin-right: 5%;
-  width: 35%;
+  width: 45%;
   overflow-y: scroll;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: (0,0,0);  /* Firefox */
 
   overflow-x: hidden;
-  max-height: 490px; 
-  border: 1px solid #ccc;
-  border-radius: 3px;
+  height: 31rem;
+  max-height: 33rem; 
+  border: 3px solid #EFEEEE;
+  border-radius: 9px;
   padding: 10px;
-  background-color: #EBECF0;
+  background-color: rgba(25, 118, 210, 0.2);
+}
+
+.mapa-board{
+  display: flex;
+    justify-content: center;
 }

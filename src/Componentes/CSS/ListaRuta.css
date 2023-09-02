@@ -1,0 +1,21 @@
+.poi-seleccionado{
+    background-color: #F8A41F !important;
+}
+
+.info-poi{
+    background-color: #ffc05d;
+    padding: 1rem;
+    border-radius: 0px 0px 10px 10px;
+}
+.lista-info{
+    text-align: left;
+    padding: inherit;
+}
+.poi-description{
+    text-align: left;
+}
+.lista-mui :nth-child(0){
+    margin-top: 0px !important;
+    
+}
+

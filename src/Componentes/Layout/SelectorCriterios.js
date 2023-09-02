@@ -28,7 +28,12 @@ export const SelectorCriterios = () => {
         },
         {
             id: 3,
-            nombre: "Accesibilidad de la ruta",
+            nombre: "Monumentos Históricos",
+            avatar: "https://www.w3schools.com/howto/img_avatar.png",
+        },
+        {
+            id: 4,
+            nombre: "Areas Naturales",
             avatar: "https://www.w3schools.com/howto/img_avatar.png",
         }
     ];
@@ -50,7 +55,8 @@ export const SelectorCriterios = () => {
             "criteriosRelevantes" : criteriosBuenos.length,
             "distancia" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 1)),
             "coste" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 2)),
-            "accesibilidad" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 3)),
+            "numMonumentos" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 3)),
+            "numAreasNaturales" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 3)),
             "numPois" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 0))
 
         };

@@ -8,11 +8,11 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import redIcon from '../../Resources/markerRed.png';
 import blueIcon from '../../Resources/markerBlue.png';
 
+import '../CSS/Mapa.css'
 
 export const Mapa = ({ pois, path, poiActual }) => {
-  const [running, setRunning] = useState(false);
+  
   const mapRef = useRef(null);
-  const animatedMarkerRef = useRef(null);
   const markersRef = useRef([]);
 
   //crear un marker como el defaultIcon pero en rojo
@@ -57,15 +57,7 @@ export const Mapa = ({ pois, path, poiActual }) => {
       paused: false,
     }).addTo(map);
 
-    animatedMarkerRef.current = L.animatedMarker(updatedCoordinates, {
-      autoStart: false,
-      interval: 40,
-      icon: L.icon({
-        iconUrl:
-          'https://cdn-icons-png.flaticon.com/512/5965/5965286.png',
-        iconSize: [60, 60],
-      }),
-    }).addTo(map);
+    
 
     return () => {
       map.remove();
@@ -94,20 +86,11 @@ export const Mapa = ({ pois, path, poiActual }) => {
     );
   }, [poiActual]);
 
-  const toggleAnimation = () => {
-    if (running) {
-      animatedMarkerRef.current.stop();
-      setRunning(false);
-    } else {
-      animatedMarkerRef.current.start();
-      setRunning(true);
-    }
-  };
+  
 
   return (
     <div>
-      <button onClick={toggleAnimation}>Toggle Animation</button>
-      <div ref={mapRef} style={{ height: '500px' }} />
+      <div className='mapa' ref={mapRef} />
     </div>
   );
 };
