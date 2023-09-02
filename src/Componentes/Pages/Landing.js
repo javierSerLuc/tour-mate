@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../../Landing.css'
 import { Nav } from '../Layout/Nav'
 import Button from '@mui/material/Button';
@@ -7,6 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 export const Landing = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    sessionStorage.clear();
+  }, [])
   
   return (
     <div className='landing'>
@@ -20,7 +24,7 @@ export const Landing = () => {
                     <span className='montserrat700'>Tour Mate</span>
                 </div>
                 <div className='sub-texto'>
-                    <span className='roboto'>Lorem Ipsum es simplemente el texto de relleno de las imprentas.Lorem Ipsum es simplemente el texto de relleno de las imprentasLorem Ipsum es simplemente el texto de relleno de las imprentas</span>
+                    <span className='roboto'>Olvídate de las complicadas guías de viaje y deja que TourMate cree rutas turísticas hechas a medida según tus preferencias.Descubre el mundo con facilidad y comodidad con TourMate, tu compañero de viaje personalizado.</span>
                 </div>
                 <div className='boton'>
                     <Button onClick={() => navigate('/Inicio')}   variant="contained" className='boton-landing' href='' sx={{width: 200,borderRadius: 35,bgcolor: '#F8A41F',

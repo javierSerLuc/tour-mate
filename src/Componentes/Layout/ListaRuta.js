@@ -94,7 +94,9 @@ export const ListaRuta = ({pois,setPoiSeleccionado,poiSeleccionado}) => {
               <div>
                 <ListItemButton className='lista-mui' key={index} onClick={() => setPoiSeleccionado(index)} sx={poiSeleccionado === index ?  styleSeleccionado : open[index] ? styleNoSeleccionadoAbierto :  styleNoSeleccionado } disableTouchRipple={true}>
                     
-                    <ListItemText primary={(index+1) + ") " + poi.nombre} />
+                    <ListItemText sx={{
+        fontFamily: 'Montserrat, sans-serif', // Cambia la fuente a Montserrat
+      }} primary={(index+1) + ") " + poi.nombre} />
                     <IconButton onClick={() => toggleOpen(index)}>
                       {open[index] ? <ExpandLess /> : <ExpandMore />}
                     </IconButton>

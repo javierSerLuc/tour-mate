@@ -1,21 +1,31 @@
 .navbar {
-    margin: 1%;
+    /* margin: 1%; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #5563AD; /* Cambia el color del texto según tus preferencias */
-    padding: 10px 20px;
+    padding: 20px 20px;
     margin-left: 7%;
     margin-right: 7%;
   }
   
   .logo {
     display: flex;
-    align-items: center;
+    align-items: center; 
+    
+  }
+  .titulo{
+    font-size: 2.5rem;
+    text-decoration: none;
+    color: #5563AD !important;
+    transition: color 0.3s ease;
+  }
+  .titulo:hover{
+    color: #F8A41F!important;
   }
   
   .logo img {
-    height: 30px; /* Ajusta el tamaño de la imagen del logo según tus necesidades */
+    height: 50px; /* Ajusta el tamaño de la imagen del logo según tus necesidades */
     margin-right: 10px;
   }
   .logo span {
@@ -37,4 +47,8 @@
     text-decoration: none;
     color: #5563AD;
     font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  .nav-links a:hover {
+    color: #F8A41F;
   }

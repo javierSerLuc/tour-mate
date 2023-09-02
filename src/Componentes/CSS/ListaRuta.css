@@ -18,4 +18,9 @@
     margin-top: 0px !important;
     
 }
+.MuiListItemText-root > span{
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 700;
+
+}
 

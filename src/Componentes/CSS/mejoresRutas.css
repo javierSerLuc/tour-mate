@@ -1,5 +1,13 @@
 .winner-route-board{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    margin: 5rem;
     
+}
+.lista-info-mejores{
+    text-align: left;
+    margin-bottom: -3rem;
+}
+.resumen-ruta{
+    margin-top: -2rem;
 }

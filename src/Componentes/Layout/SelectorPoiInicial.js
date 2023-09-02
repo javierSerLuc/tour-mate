@@ -4,6 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { async } from 'q';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const SelectorPoiInicial = ({poiInicialSelect,setPoiInicialSelect}) => {
     //const [poi, setPoi] = React.useState('');
@@ -51,7 +52,7 @@ export const SelectorPoiInicial = ({poiInicialSelect,setPoiInicialSelect}) => {
     return (
       
       <div>
-        {loading ? <h1>Cargando...</h1> :
+        {loading ? <CircularProgress/> :
         {poiInicialSelect} === '' ?
         <FormControl sx={{ m: 1, minWidth: 180 }}>
           <InputLabel id="demo-simple-select-autowidth-label">Lugar de inicio</InputLabel>

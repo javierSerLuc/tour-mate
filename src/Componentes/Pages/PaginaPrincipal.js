@@ -27,6 +27,7 @@ export const PaginaPrincipal = () => {
     const [horaFinReloj, setHoraFinReloj] = React.useState('');
     const [poiInicialSelect, setPoiInicialSelect] = React.useState('');
     const [vehiculo, setVehiculo] = React.useState('');
+    const [errorHora, setErrorHora] = React.useState(0);
 
     
       
@@ -88,8 +89,11 @@ export const PaginaPrincipal = () => {
         let dateFinRuta = sessionStorage.getItem('horaFin');
         let vehiculo = sessionStorage.getItem('vehicle');
 
-        return dia !== null && dateInicioRuta !== null && dateFinRuta !== null && vehiculo !== null;
+        return dia !== null && dateInicioRuta !== null && dateFinRuta !== null && vehiculo !== null && errorHora === 0;
     };
+    React.useEffect(() => {
+      sessionStorage.clear();
+    },[]);
 
     
 
@@ -127,7 +131,7 @@ export const PaginaPrincipal = () => {
         
           <React.Fragment>
               {/* Aqui va el contenido de cada paso */}
-              {activeStep === 0 && <SelectorFecha diaCalendar={diaCalendar} setDiaCalendar={setDiaCalendar} horaInicioReloj={horaInicioReloj} setHoraInicioReloj={setHoraInicioReloj} horaFinReloj={horaFinReloj} setHoraFinReloj={setHoraFinReloj} setPoiInicialSelect={setPoiInicialSelect} vehiculo={vehiculo} setVehiculo={setVehiculo}  />}
+              {activeStep === 0 && <SelectorFecha diaCalendar={diaCalendar} setDiaCalendar={setDiaCalendar} horaInicioReloj={horaInicioReloj} setHoraInicioReloj={setHoraInicioReloj} horaFinReloj={horaFinReloj} setHoraFinReloj={setHoraFinReloj} setPoiInicialSelect={setPoiInicialSelect} vehiculo={vehiculo} setVehiculo={setVehiculo} setErrorHora={setErrorHora}  />}
               {activeStep === 1 && <SelectorPoiInicial poiInicialSelect={poiInicialSelect} setPoiInicialSelect={setPoiInicialSelect} />}
               {activeStep === 2 && <SelectorCriterios />}
             {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}

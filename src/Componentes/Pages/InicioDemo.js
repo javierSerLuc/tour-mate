@@ -7,6 +7,8 @@ import { ListaRuta } from '../Layout/ListaRuta';
 
 
 import { MejoresRutas } from '../Layout/MejoresRutas';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 export const InicioDemo = () => {
@@ -14,11 +16,17 @@ export const InicioDemo = () => {
     const [rutaMostrar, setRutaMostrar] = useState(0);
     const [numRutas, setNumRutas] = useState(0); 
     const [rutas, setRutas] = useState([]);
+    const [rutasCompletas, setRutasCompletas] = useState([]); //Rutas completas, sin filtrar
     const [loading, setLoading] = useState(true);
     const [poiSeleccionado, setPoiSeleccionado] = useState(0);
     const [datosGrafico, setDatosGrafico] = useState([]);
-    const navigate = useNavigate();
     
+    let botones = {width: '14rem',borderRadius: 35,bgcolor: '#5563ad',margin:4,':hover': {
+      bgcolor: '#F8A41F', // theme.palette.primary.main
+      color: 'white',
+      
+    }};
+
     const normalizarDatosGrafico = (rutas) => {
         let maxCoste = 0;
         let maxDistancia = 0;
@@ -59,7 +67,7 @@ export const InicioDemo = () => {
         setLoading(false);
       };
     const getRutas = async () =>{
-        let url = "http://localhost:8080/api/getRutas/15";
+        let url = "http://localhost:8080/api/getRutas/5";
         
         let dia = sessionStorage.getItem('dia');
         let dateInicioRuta = sessionStorage.getItem('horaInicio');
@@ -104,12 +112,14 @@ export const InicioDemo = () => {
             },
             body: JSON.stringify(especificaciones)
           }
+          console.log(requestOptions.body);
         const response = await fetch(url, requestOptions);
         const data = await response.json();
         const array = data.rutas;
+        setRutasCompletas(array);
         const mejoresRutas = array.slice(0,3);
         setRutas(mejoresRutas);
-        setNumRutas(rutas.length);
+        setNumRutas(mejoresRutas.length);
 
         normalizarDatosGrafico(mejoresRutas);
         //Normalizar datos grafico
@@ -139,14 +149,16 @@ export const InicioDemo = () => {
   return (
     <div>
         {/* <button onClick={() => navigate('/')}>Volver</button> */}
-        <button onClick={() => setComponenteMostrar(0)}>Volver</button>
+        {/* <button onClick={() => setComponenteMostrar(0)}>Volver</button>
         <button onClick={() => console.log(datosGrafico)}>dsadsa</button>
-        {/* <button onClick={() => console.log(rutas)}>Get Rutas</button> */}
-        {loading ? <h1>Cargando...</h1>
+        <button onClick={() => console.log(rutas)}>Get Rutas</button>
+        <button onClick={() => console.log(rutasCompletas)}>Get Rutas Completas</button> */}
+        {loading ? <CircularProgress sx={{marginTop:'20rem'}}/>
         
         :<div>
             {componenteMostrar === 0 ? <MejoresRutas setComponenteMostrar={setComponenteMostrar} listaRutas={rutas} setRutaMostrar={setRutaMostrar} datosGrafico={datosGrafico} />
-            :<div className='mapa-board'>
+            :<div>
+              <div className='mapa-board'>
                 {/* <button onClick={() => changeRuta(-1)}>anterior</button>
                 <button onClick={() => changeRuta(+1)}>Siguiente</button> */}
                 <div className='mapa'>
@@ -154,7 +166,14 @@ export const InicioDemo = () => {
                 </div>
                 <div className='lista-rutas'>
                     <ListaRuta pois={rutas[rutaMostrar].pois} setPoiSeleccionado={setPoiSeleccionado} poiSeleccionado={poiSeleccionado}></ListaRuta>
-                </div>    
+                </div>
+                
+                 
+              </div>
+              <Button onClick={() => changeRuta(-1)} disabled={rutaMostrar === 0}   variant="contained" className='boton-landing' href='' sx={botones}> {"<-"} </Button>
+              <Button onClick={() => setComponenteMostrar(0)}   variant="contained" className='boton-landing' href='' sx={botones}> {"Volver"} </Button>
+              <Button onClick={() => changeRuta(1)}   disabled={rutaMostrar === 2}  variant="contained" className='boton-landing' href='' sx={botones}> {"->"} </Button>
+              
             </div>}
             
             {/* <div>

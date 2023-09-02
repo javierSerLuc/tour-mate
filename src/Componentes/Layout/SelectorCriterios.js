@@ -4,7 +4,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-
+import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import EuroIcon from '@mui/icons-material/Euro';
+import TempleBuddhistIcon from '@mui/icons-material/TempleBuddhist';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import LandscapeIcon from '@mui/icons-material/Landscape';
 import { DragDropContext,Droppable,Draggable } from 'react-beautiful-dnd';
 
 
@@ -14,27 +19,27 @@ export const SelectorCriterios = () => {
         {
             id: 0,
             nombre: "Lugares a visitar",
-            avatar: "https://www.w3schools.com/howto/img_avatar.png",
+            avatar: <AddLocationAltIcon/>,
         },
         {
             id: 1,
             nombre: "Distancia a recorrer",
-            avatar: "https://www.w3schools.com/howto/img_avatar.png",
+            avatar: <DirectionsWalkIcon/>,
         },
         {
             id: 2,
             nombre: "Coste de la ruta",
-            avatar: "https://www.w3schools.com/howto/img_avatar.png",
+            avatar: <EuroIcon/>,
         },
         {
             id: 3,
             nombre: "Monumentos Históricos",
-            avatar: "https://www.w3schools.com/howto/img_avatar.png",
+            avatar: <TempleBuddhistIcon/>,
         },
         {
             id: 4,
             nombre: "Areas Naturales",
-            avatar: "https://www.w3schools.com/howto/img_avatar.png",
+            avatar: <LandscapeIcon/>,
         }
     ];
     let criteriosBuenosArray = [];
@@ -56,7 +61,7 @@ export const SelectorCriterios = () => {
             "distancia" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 1)),
             "coste" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 2)),
             "numMonumentos" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 3)),
-            "numAreasNaturales" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 3)),
+            "numAreasNaturales" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 4)),
             "numPois" : conjunto.indexOf(conjunto.find(criterio => criterio.id === 0))
 
         };
@@ -133,9 +138,9 @@ export const SelectorCriterios = () => {
                                             minHeight: '70px'
                                     
                                     }}>
-                                        <ListItemAvatar>
-                                            <Avatar alt={criterio.nombre} src={criterio.avatar} variant="square" />
-                                        </ListItemAvatar>
+                                        <ListItemIcon>
+                                                {criterio.avatar}
+                                            </ListItemIcon>
                                         <ListItemText
                                             primary={criterio.nombre} sx={{
                                                 //Solo ocupe el tamaño del texto de anchura
@@ -184,9 +189,12 @@ export const SelectorCriterios = () => {
                                             minHeight: '70px'
                                         
                                         }}>
-                                            <ListItemAvatar>
+                                            {/* <ListItemAvatar>
                                                 <Avatar alt={criterio.nombre} src={criterio.avatar} variant="square" />
-                                            </ListItemAvatar>
+                                            </ListItemAvatar> */}
+                                            <ListItemIcon>
+                                                {criterio.avatar}
+                                            </ListItemIcon>
                                             <ListItemText
                                                 primary={criterio.nombre} sx={{
                                                     //Solo ocupe el tamaño del texto de anchura
